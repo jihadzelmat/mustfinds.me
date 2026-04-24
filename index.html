@@ -6,8 +6,24 @@
   <title>MustFinds — Best Amazon Finds & Home Must Haves</title>
   <meta name="description" content="Discover the best Amazon must-haves curated for you. Home organization, kitchen gadgets, beauty finds, gift ideas & more. Shop our top picks!" />
 
-  <!-- Pinterest Site Verification (add your code here after claiming) -->
-  <!-- <meta name="p:domain_verify" content="YOUR_CODE_HERE"/> -->
+  <!-- Pinterest Rich Pins ENABLED -->
+  <meta name="pinterest-rich-pin" content="true" />
+
+  <!-- Schema.org markup for Rich Pins -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MustFinds",
+    "url": "https://mustfinds.me",
+    "description": "Best Amazon finds and must-haves curated weekly. Home organization, kitchen gadgets, beauty finds, gift ideas and more.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://mustfinds.me/?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
 
   <!-- Open Graph for Pinterest sharing -->
   <meta property="og:title" content="MustFinds — Best Amazon Finds & Home Must Haves" />
