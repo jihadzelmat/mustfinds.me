@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MustFinds — Best Amazon Finds & Home Must Haves</title>
+  <meta name="description" content="Discover the best Amazon must-haves curated for you. Home organization, kitchen gadgets, beauty finds, gift ideas & more. Shop our top picks!" />
+
+  <!-- Pinterest Site Verification (add your code here after claiming) -->
+  <!-- <meta name="p:domain_verify" content="YOUR_CODE_HERE"/> -->
+
+  <!-- Open Graph for Pinterest sharing -->
+  <meta property="og:title" content="MustFinds — Best Amazon Finds & Home Must Haves" />
+  <meta property="og:description" content="Curated Amazon must-haves: home organization, kitchen gadgets, beauty finds & gift ideas." />
+  <meta property="og:image" content="https://mustfinds.me/preview.png" />
+  <meta property="og:url" content="https://mustfinds.me" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber:    #F59E0B;
+      --amber-d:  #D97706;
+      --amber-l:  #FDE68A;
+      --bg:       #0F0A00;
+      --surface:  #1A1200;
+      --card:     #1F1600;
+      --border:   #2E2000;
+      --text:     #FFF8ED;
+      --muted:    #A89070;
+      --white:    #FFFFFF;
+      --radius:   18px;
+      --shadow:   0 8px 40px rgba(245,158,11,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Animated background glow ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+      50%       { opacity: 1;   transform: translateX(-50%) scale(1.15); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: rgba(15,10,0,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, var(--amber), #FBBF24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-logo span { color: var(--white); -webkit-text-fill-color: var(--white); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      background: linear-gradient(135deg, var(--amber), var(--amber-d));
+      color: #000;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245,158,11,0.4);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 80px 24px 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: rgba(245,158,11,0.12);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--amber);
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--amber), #FBBF24, #FDE68A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--amber), var(--amber-d));
+      color: #000;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(245,158,11,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(245,158,11,0.5);
+    }
+
+    .btn-secondary {
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      transform: translateY(-3px);
+    }
+
+    /* ── STATS STRIP ── */
+    .stats {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      margin-bottom: 70px;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--amber);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 0 24px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+
+    /* ── CATEGORY CARDS ── */
+    .categories {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .cat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(245,158,11,0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(245,158,11,0.4);
+      box-shadow: var(--shadow);
+    }
+
+    .cat-card:hover::before { opacity: 1; }
+
+    .cat-icon {
+      font-size: 2.2rem;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(245,158,11,0.1);
+      border-radius: 14px;
+      border: 1px solid rgba(245,158,11,0.2);
+    }
+
+    .cat-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .cat-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .cat-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--amber);
+      transition: gap 0.2s;
+    }
+
+    .cat-card:hover .cat-link { gap: 10px; }
+
+    .cat-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: linear-gradient(135deg, var(--amber), var(--amber-d));
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── PINTEREST SECTION ── */
+    .pinterest-section {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .pinterest-card {
+      background: linear-gradient(135deg, #1A0A0A, #200808);
+      border: 1px solid #3D1515;
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .pinterest-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .pinterest-card h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .pinterest-card p {
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .btn-pinterest {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: #E60023;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(230,0,35,0.3);
+    }
+
+    .btn-pinterest:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(230,0,35,0.5);
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .step-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--amber), var(--amber-d));
+      color: #000;
+      font-weight: 800;
+      font-size: 1.1rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .step-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--amber);
+      text-decoration: none;
+    }
+
+    footer .footer-logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--amber), #FBBF24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--amber); }
+
+    /* ── TICKER BANNER ── */
+    .ticker-wrap {
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--amber), var(--amber-d));
+      padding: 10px 0;
+      margin-bottom: 0;
+    }
+
+    .ticker {
+      display: flex;
+      animation: ticker 25s linear infinite;
+      white-space: nowrap;
+    }
+
+    .ticker-item {
+      color: #000;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0 40px;
+      letter-spacing: 0.3px;
+    }
+
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 16px 40px; }
+      .stats { gap: 24px; }
+      .categories { grid-template-columns: 1fr; }
+      .pinterest-card { padding: 28px 20px; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ticker Banner -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span class="ticker-item">🛒 New Amazon Finds Added Weekly</span>
+      <span class="ticker-item">🏠 Home Organization Must-Haves</span>
+      <span class="ticker-item">🍳 Kitchen Gadgets Under $30</span>
+      <span class="ticker-item">🎁 Best Gift Ideas on Amazon</span>
+      <span class="ticker-item">💄 Beauty & Self-Care Finds</span>
+      <span class="ticker-item">🛋️ Home Decor Trending Now</span>
+      <span class="ticker-item">🛒 New Amazon Finds Added Weekly</span>
+      <span class="ticker-item">🏠 Home Organization Must-Haves</span>
+      <span class="ticker-item">🍳 Kitchen Gadgets Under $30</span>
+      <span class="ticker-item">🎁 Best Gift Ideas on Amazon</span>
+      <span class="ticker-item">💄 Beauty & Self-Care Finds</span>
+      <span class="ticker-item">🛋️ Home Decor Trending Now</span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-logo">Must<span>Finds</span></div>
+    <a href="https://www.pinterest.com/amazonfindskits/" target="_blank" class="nav-cta">
+      📌 Follow on Pinterest
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">✨ Curated Amazon Must-Haves for 2026</div>
+    <h1>
+      Discover the<br />
+      <span class="highlight">Best Amazon Finds</span><br />
+      Every Week
+    </h1>
+    <p>
+      From home organization & kitchen gadgets to beauty finds and gift ideas —
+      we curate only the best so you don't have to. 🛒
+    </p>
+    <div class="hero-buttons">
+      <a href="https://kit.com/musthaves" target="_blank" class="btn-primary" id="hero-shop-btn">
+        🛍️ Shop All Kits
+      </a>
+      <a href="https://www.pinterest.com/amazonfindskits/" target="_blank" class="btn-secondary" id="hero-pinterest-btn">
+        📌 See Our Pins
+      </a>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats fade-up">
+    <div class="stat">
+      <div class="stat-num">8.6K+</div>
+      <div class="stat-label">Pinterest Followers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Products Curated</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Expert Categories</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Weekly</div>
+      <div class="stat-label">New Finds Added</div>
+    </div>
+  </div>
+
+  <!-- Category Cards -->
+  <div class="section-header fade-up">
+    <div class="section-tag">🔍 Browse by Category</div>
+    <h2>Find Exactly What You Need</h2>
+    <p>Hand-picked Amazon products in the categories that matter most</p>
+  </div>
+
+  <div class="categories">
+
+    <a href="https://kit.com/musthaves" target="_blank" class="cat-card fade-up" id="cat-home-org">
+      <span class="cat-badge">🔥 Most Popular</span>
+      <div class="cat-icon">🏠</div>
+      <h3>Home Organization</h3>
+      <p>Transform any space with the best storage solutions, organizers, and decluttering tools on Amazon — all under $30.</p>
+      <span class="cat-link">Shop Now →</span>
+    </a>
+
+    <a href="https://kit.com/musthaves" target="_blank" class="cat-card fade-up" id="cat-kitchen">
+      <div class="cat-icon">🍳</div>
+      <h3>Kitchen Gadgets</h3>
+      <p>Viral kitchen tools and gadgets that actually work. Time-saving, space-efficient, and loved by thousands of reviewers.</p>
+      <span class="cat-link">Shop Now →</span>
+    </a>
+
+    <a href="https://kit.com/musthaves" target="_blank" class="cat-card fade-up" id="cat-gifts">
+      <span class="cat-badge">🎁 Trending</span>
+      <div class="cat-icon">🎁</div>
+      <h3>Gift Ideas</h3>
+      <p>The perfect Amazon gifts for every person and every budget. Never struggle to find a gift again — we've done it for you.</p>
+      <span class="cat-link">Shop Now →</span>
+    </a>
+
+    <a href="https://kit.com/musthaves" target="_blank" class="cat-card fade-up" id="cat-beauty">
+      <div class="cat-icon">💄</div>
+      <h3>Beauty & Self-Care</h3>
+      <p>Editor-loved beauty products, skincare finds, and self-care essentials that deliver real results without the luxury price tag.</p>
+      <span class="cat-link">Shop Now →</span>
+    </a>
+
+    <a href="https://kit.com/musthaves" target="_blank" class="cat-card fade-up" id="cat-decor">
+      <div class="cat-icon">🛋️</div>
+      <h3>Home Decor</h3>
+      <p>Aesthetic home decor finds that look expensive but aren't. Elevate any room with our trending Amazon picks.</p>
+      <span class="cat-link">Shop Now →</span>
+    </a>
+
+    <a href="https://www.pinterest.com/amazonfindskits/" target="_blank" class="cat-card fade-up" id="cat-new">
+      <div class="cat-icon">⚡</div>
+      <h3>New This Week</h3>
+      <p>Fresh Amazon finds added weekly. Follow us on Pinterest to never miss a new drop — we pin the best ones daily.</p>
+      <span class="cat-link">Follow on Pinterest →</span>
+    </a>
+
+  </div>
+
+  <!-- Pinterest Section -->
+  <div class="pinterest-section fade-up">
+    <div class="pinterest-card">
+      <div class="pinterest-icon">📌</div>
+      <h2>Follow Us on Pinterest</h2>
+      <p>
+        Join 8,600+ followers who discover new Amazon must-haves every day.
+        We pin the best finds so your feed is always full of inspiration.
+      </p>
+      <a href="https://www.pinterest.com/amazonfindskits/" target="_blank" class="btn-pinterest" id="pinterest-follow-btn">
+        ❤️ Follow @amazonfindskits
+      </a>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <section class="how-section">
+    <div class="section-header fade-up">
+      <div class="section-tag">💡 How It Works</div>
+      <h2>From Scroll to Doorstep</h2>
+      <p>We make finding & buying Amazon must-haves effortless</p>
+    </div>
+
+    <div class="steps">
+      <div class="step-card fade-up" id="step-1">
+        <div class="step-num">1</div>
+        <h3>We Curate</h3>
+        <p>Our team browses thousands of Amazon products to handpick only the best finds worth your money.</p>
+      </div>
+      <div class="step-card fade-up" id="step-2">
+        <div class="step-num">2</div>
+        <h3>You Discover</h3>
+        <p>Browse our Pinterest boards or kits by category. Every product is linked directly — no searching needed.</p>
+      </div>
+      <div class="step-card fade-up" id="step-3">
+        <div class="step-num">3</div>
+        <h3>You Shop & Save</h3>
+        <p>Click any product link to go straight to Amazon. Most items ship free with Prime. Simple as that.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">MustFinds</div>
+    <p style="margin-bottom: 4px;">Your weekly dose of the best Amazon finds 🛒</p>
+    <div class="footer-links">
+      <a href="https://www.pinterest.com/amazonfindskits/" target="_blank">Pinterest</a>
+      <a href="https://kit.com/musthaves" target="_blank">Shop Kits</a>
+    </div>
+    <p style="font-size: 0.75rem; margin-top: 12px;">
+      © 2026 MustFinds · As an Amazon Associate, we earn from qualifying purchases.
+      <br />Affiliate disclosure: Links on this site may be affiliate links.
+    </p>
+  </footer>
+
+  <!-- Scroll animation trigger -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
